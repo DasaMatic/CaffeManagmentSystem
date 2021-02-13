@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <% include partials/bootstrap %>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="/css/dataTables.css">
+    <script type="text/javascript" src="/js/dataTables.js"></script>
+    <link rel="stylesheet" href="/css/indexAdmin.css">
+    <title>All users</title>
+</head>
+<body>
+    <% include partials/navbar_admin %>
+    <br><br><br>
+    <h1 align='center'>Users</h1>
+    <br>
+    <form action="/users/insert" method="get">
+        <button type="submit" class="btn btn-secondary btn-lg btn-block">Add new user</button>
+    </form>
+    <br>
+    <div id="dvData">
+        <table style="width:100%" id="tableData" border="1">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Address</th>
+                    <th>Phone</th>
+                    <th>Username</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < user_list.length; i++){  %>
+                    <tr>
+                        <td><%= user_list[i].first_name %></td>
+                        <td><%= user_list[i].last_name %></td>
+                        <td><%= user_list[i].address %></td>
+                        <td><%= user_list[i].phone %></td>
+                        <td class="nr"><%= user_list[i].username %></td>
+                        <td><button type="button" class="update">Get username</td>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+        <form style="text-align:center;" action="/users/updatee" method="post">
+            Username: <input text-align="center" id="username" name="username" placeholder="Username">
+            <br><br>
+            <button type="submit" class="btn btn-secondary btn-lg btn-block">Update user</button>
+        </form>
+        <br>
+        <form style="text-align:center;" onsubmit="return confirm('Do you really want to delete this user?');" action="/users/delete" method="post">
+            <input type="hidden" id="username2" name="username2" placeholder="Username">
+            <button type="submit" class="btn btn-secondary btn-lg btn-block">Delete user</button>
+        </form>
+    </div>
+    <br>
+    <style> 
+        input {
+            width: 20%;
+        }
+        .btn.btn-secondary.btn-lg.btn-block {
+            width: 100%;
+        }
+    </style>
+</body>
+
+<script>
+    $(".update").click(function() {
+        var $row = $(this).closest("tr");
+        var $text = $row.find(".nr").text();
+        document.getElementById("username").value = $text;
+        document.getElementById("username2").value = $text;
+    });
+</script>
+</html>

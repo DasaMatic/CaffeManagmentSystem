@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    <link rel="stylesheet" href="/css/indexAdmin.css">
+    <% include partials/bootstrap %>
+    <title>Products API</title>
+</head>
+<body>
+    <% include partials/navbar_admin %>    
+    <br><br><br><br>
+    <h2 align="center">Products API</h2>
+    <br><br><br><br>
+    <table id="products">
+        <tr>
+            <th>Route</th>
+            <th>Function</th>
+        </tr>
+        <tr>
+            <td><a href="http://localhost:3000/products">/products</a></td>
+            <td>Get all products.</td>            
+        </tr>
+        <tr>
+            <td>/products/id/:id</td>
+            <td>Get one product with id from parameter.</td>
+        </tr>
+        <tr>
+            <td>/products/insert/:name/:price</td>
+            <td>Insert product with name and price from parameters.</td>
+        </tr>
+        <tr>
+            <td>/products/update/:id/:name/:price</td>
+            <td>Update product with id from parameters with data from name and price parameters.</td>
+        </tr>
+        <tr>
+            <td>/products/delete/:id</td>
+            <td>Delete product with id from parameter.</td>
+        </tr>
+        
+    </table>
+
+    <style>
+        #products {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+
+        #products td, #products th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #products tr:nth-child(even){background-color: #f2f2f2;}
+
+        #products tr:hover {background-color: #ddd;}
+
+        #products th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #494646;
+            color: white;
+        }
+    </style>
+</body>
+<style>
+</style>
+</html>
+
+

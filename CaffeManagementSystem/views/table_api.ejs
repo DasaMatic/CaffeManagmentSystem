@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+    <link rel="stylesheet" href="/css/indexAdmin.css">
+    <% include partials/bootstrap %>
+    <title>Tables API</title>
+</head>
+<body>
+    <% include partials/navbar_admin %>    
+    <br><br><br><br>
+    <h2 align="center">Tables API</h2>
+    <br><br><br><br>
+    <table id="tables">
+        <tr>
+            <th>Route</th>
+            <th>Function</th>
+        </tr>
+        <tr>
+            <td><a href="http://localhost:3000/tables">/tables</a></td>
+            <td>Get all tables.</td>            
+        </tr>
+        <tr>
+            <td>/tables/id/:id</td>
+            <td>Get one table with id from parameter.</td>
+        </tr>
+        <tr>
+            <td>/tables/insert/:position</td>
+            <td>Insert table with position from parameter.</td>
+        </tr>
+        <tr>
+            <td>/tables/update/:id/:position</td>
+            <td>Update table with id from parameters with data from position parameter.</td>
+        </tr>
+        <tr>
+            <td>/tables/delete/:id</td>
+            <td>Delete table with id from parameter.</td>
+        </tr>
+        
+    </table>
+
+    <style>
+        #tables {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 70%;
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+
+        #tables td, #tables th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #tables tr:nth-child(even){background-color: #f2f2f2;}
+
+        #tables tr:hover {background-color: #ddd;}
+
+        #tables th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #494646;
+            color: white;
+        }
+    </style>
+</body>
+<style>
+</style>
+</html>
+
+

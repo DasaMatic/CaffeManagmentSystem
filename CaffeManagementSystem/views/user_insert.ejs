@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <% include partials/bootstrap %>
+    <link rel="stylesheet" href="/css/userInsert.css">
+    <link rel="stylesheet" href="/css/indexAdmin.css">
+    <title>Insert user</title>
+</head>
+<body>
+    <% include partials/navbar_admin %>
+    
+    <div id="all">
+        <h1 align="center"> New user </h1>
+        <br><br>
+        <div class="main">
+            <div class="agile">
+                <div class="signin-form profile">			
+                    <div class="login-form">
+                        <form action="/users/insert" method="post">
+                            <div class="col-md-6" style="text-align:center">
+                                <input type="text" name="first_name" placeholder="First name" required=""></br></br>
+                                <input type="text" name="last_name" placeholder="Last name" required=""></br></br>
+                                <input type="text" name="address" placeholder="Address" required=""></br></br>
+                                <input type="text" name="phone" placeholder="Phone" required=""></br></br>
+                            </div>
+                            <div class="col-md-6" style="text-align:center">
+                                <input type="text" name="username" placeholder="Username" required=""></br></br>
+                                <input type="password" name="password" placeholder="Password" required=""></br></br>
+                                <input type="password" name="password_confirm" placeholder="Password confirm" required=""></br></br>
+                            </div>
+                            <div class="col-md-12" style="text-align:center">
+                                <input type="submit" class="registerbtn" value="Register">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

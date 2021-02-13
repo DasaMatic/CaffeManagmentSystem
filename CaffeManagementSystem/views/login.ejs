@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="/css/login.css">
+        <% include partials/bootstrap %>
+        <title>InfinityCaffe</title>
+    </head>
+    <body>
+        <% include partials/navbar_login %>
+        <div id="sve" style="width:30%; margin-top: 5cm; text-align:left; position:absolute;">
+            <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                <div class="modal-dialog">
+                    <div class="loginmodal-container">
+                        <h1>Login</h1><br>
+                        <form action="/" method="post">
+                            <input type="text" name="username" id="username" placeholder="Username">
+                            <input type="password" name="password" id="password" placeholder="Password">
+                            <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>                    
+    </body>
+</html>

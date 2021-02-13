@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <% include partials/bootstrap %>   
+        <link rel="stylesheet" href="/css/index.css">     
+        <title>Waiters rank list</title>
+    </head>
+    <body>
+        <% include partials/navbar_user %>
+        <br><br><br>
+        <h3 align="center"><u>Waiters with amounts</u></h3>
+        <br><br><br>
+        <div>
+            
+            <ol id="dvData" class="center">
+                <% for(var i = 0; i < usersAmounts.length; i++){  %>
+                    <tr>
+                        <% for(var j = 0; j < users.length; j++){ %>
+                            <% if(JSON.stringify(usersAmounts[i]._id) == JSON.stringify(users[j]._id)){ %>
+                                <% if(i == 0){ %> 
+                                    <b><li id='firstWaiter' style="font-size:3em"> <%= users[j].first_name %> <%= users[j].last_name %> -  <%= usersAmounts[i].amount  %>din</li></b> 
+                                <% } else if(i < 3 && i != 0){ %> 
+                                    <b><li style="font-size:3em"> <%= users[j].first_name %> <%= users[j].last_name %> -  <%= usersAmounts[i].amount %>din</li></b>
+                                <% } else { %>
+                                    <li style="font-size:2em"> <%= users[j].first_name %> <%= users[j].last_name %> -  <%= usersAmounts[i].amount %>din</li>
+                                <% } %>
+                            <% } %>
+                        <% } %> 
+                    </tr>
+                <% } %>
+            </ol>
+        </div>
+        <br><br>
+        <style>
+            .center {
+                text-align: center;
+                list-style-position: inside;
+            }
+
+            #firstWaiter {
+                color: red;
+            }
+        </style>    
+    </body>
+</html>

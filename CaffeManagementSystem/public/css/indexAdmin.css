@@ -1,0 +1,9 @@
+body {
+    background-image: url("/img/coffe2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    position: relative;
+    /*opacity: 0.65;*/
+    background-position: center;
+    background-size: auto;
+}
