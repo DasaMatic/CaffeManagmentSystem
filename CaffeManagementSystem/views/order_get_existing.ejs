@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Ger order</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="/css/dataTables.css">
+        <script type="text/javascript" src="/js/dataTables.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/i18n/defaults-*.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/index.css">
+        <% include partials/bootstrap %>
+    </head>
+    <body onLoad="getTable()">
+        <% include partials/navbar_user %>    
+        <br><br><br><br>
+        <h3 align="center">Get order for selected table</h3>
+        <br><br><br>
+        <br><br><br>
+        <form action="/orders/existing" method="post">
+            <div align="center">
+                <div id='table_div'>
+                    <label id="title" for="table" class="col-2 col-form-label">Table </label>
+                    <select onchange="getTable()" class="selectpicker" id="table" name="table">
+                        <% for(var i = 0; i < tables.length; i++) { %>
+                            <option value="<%= tables[i].id %>"><%= tables[i].position %></option>
+                        <% } %>
+                    </select>
+                    <input type="hidden" name="tableID" id="tableID">
+                </div>
+            </div>
+            <br><br><br>
+            <button id="get_order" type="submit" class="btn btn-secondary btn-lg btn-block">Find order</button>
+        </form>
+        <style>
+            #get_order{
+                width: 30%;
+                margin-left: 35%;
+                margin-right: 35%
+            }
+        </style>
+        <script>
+            function getTable() {
+                var e = document.getElementById("table");
+                var value = e.options[e.selectedIndex].value;
+                document.getElementById("tableID").value = value;
+            }    
+
+        </script>
+    </body>
+</html>

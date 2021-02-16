@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+    <% include partials/bootstrap %>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="/css/dataTables.css">
+    <script type="text/javascript" src="/js/dataTables.js"></script>
+    <link rel="stylesheet" href="/css/indexAdmin.css">
+    <title>All orders</title>
+</head>
+<body>
+    <% include partials/navbar_admin %>
+    <br><br><br>
+    <h1 align='center'>Orders</h1>
+    <br>
+    <div id="dvData">
+        <table style="width:100%" id="tableDataa" border="1">
+            <thead>
+                <tr>
+                    <th>Waiter</th>
+                    <th>Date</th>
+                    <th>Table</th>
+                    <th>Storn</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(var i = 0; i < orders.length; i++){ %>
+                    <tr>
+                        <th><%= orders[i].userId.first_name + ' ' + orders[i].userId.last_name %></th>
+                        <th><%= orders[i].date %></th>
+                        <% 
+                        for(var j = 0; j < tables.length; j++){
+                            if(JSON.stringify(orders[i].tableId) == JSON.stringify(tables[j].id)){
+                        %>
+                                <th><%= tables[j].position %></th>
+                        <%
+                            }
+                        } 
+                        %>                        
+                        <th><%= orders[i].storn %></th>
+                        <th><%= orders[i].sumValue %></th>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

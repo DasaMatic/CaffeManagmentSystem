@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="/css/dataTables.css">
+        <script type="text/javascript" src="/js/dataTables.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/i18n/defaults-*.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="/css/index.css">
+        <% include partials/bootstrap %>
+        <title>New order</title>
+    </head>
+    <body>
+        <% include partials/navbar_user %>        
+        <br><br><br>
+        <form action="/order_items/insert/<%= tableID %>" method="post">
+            <div id='product_div'>
+                <label for="product" class="col-2 col-form-label">Product</label>
+                <select class="selectpicker" id="product" name="product">
+                    <% for(var i = 0; i < product_list.length; i++) { %>
+                        <option value="<%= product_list[i].name %>"><%= product_list[i].name %></option>
+                    <% } %>
+                </select>
+            </div>
+            <br>
+            <input type="hidden" name="orderID" id="orderID" value="<%= orderID %>">
+            <div id="quantity_div" class="form-group row">
+                <label for="quantity" class="col-2 col-form-label">Quantity</label>
+                <input class="form-control" type="number" value="1" min="1" id="quantity" name="quantity">
+            </div>
+            <br>
+            <button id="add_order_item" type="submit" class="btn btn-secondary btn-lg btn-block">Insert order item</button>
+        </form>
+            
+        <% var sumPrice = 0; %>
+        <br><br>
+        <div id="dvData">
+                <table style="width:100%" id="tableData" border="1">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (var i = 0; i < order_items.length; i++) { %>
+                            <tr>
+                                <form onsubmit="return confirm('Do you really want to delete this item?');" action="/orders/order_item/delete/<%= order_items[i].id %>" method="post">
+                                    <td><%= order_items[i].product.name %></td>
+                                    <td><%= order_items[i].quantity %></td>
+                                    <td><%= order_items[i].product.price * order_items[i].quantity %></td>
+                                    <td width="10%"><button type="submit">Delete item</button></td>
+                                    <% sumPrice +=  order_items[i].product.price * order_items[i].quantity %>
+                                    <input type="hidden" name="table_id" id="table_id" value="<%= tableID %>">
+                                    <input type="hidden" name="order_id" id="order_id" value="<%= orderID %>">
+                                </form>
+                            </tr>
+                        <% } %>
+                        <tr>
+                            <td></td>
+                            <td  align="right">Total:</td>
+                            <td><%= sumPrice %></td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <br><br><br>
+        <form style="text-align:center;" action="/orders/finalize/<%= orderID %>/<%= sumPrice %>" method="get">
+            <button id="add_order_item" type="submit" class="btn btn-secondary btn-lg btn-block">Finalize order</button>
+        </form>
+        <br>
+        <form style="text-align:center;" onsubmit="return confirm('Do you really want to delete order?');" action="/orders/delete" method="post">
+            <button id="add_order_item" type="submit" class="btn btn-secondary btn-lg btn-block">Delete order</button>
+            <input type="hidden" name="ordID" id="ordID" value="<%= orderID %>">
+            <input type="hidden" name="tblID" id="tblID" value="<%= tableID %>">
+            </form>
+        <br><br>
+    <style>
+
+        #quantity_div{
+            width: 10%;
+            margin-left: 40%;
+            margin-right: 50%
+            
+        }
+
+        #add_order_item{
+            width: 30%;
+            margin-left: 35%;
+            margin-right: 35%
+        }
+        
+        #product_div{
+            width: 10%;
+            margin-left: 40%;
+            margin-right: 50%
+        }
+    </style>
+    
+    </body>
+</html>
