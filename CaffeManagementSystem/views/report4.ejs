@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <% include partials/bootstrap %>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <link rel="stylesheet" href="/css/dataTables.css">
+        <script type="text/javascript" src="/js/dataTables.js"></script>
+        <link rel="stylesheet" href="/css/indexAdmin.css">      
+        <title>Best-selling products</title>
+    </head>
+    <body>
+        <% include partials/navbar_admin %>
+        <br><br><br>
+        <h1 align='center'>Top 10 best-selling products</h1>
+        <br><br>
+        <div id="dvData">
+            <table style="width:100%" id="tableDataa" border="1">
+                <thead>
+                    <tr>
+                        <th>Product</th>                        
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Summary price</th>                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < productsQuantity.length; i++){  %>
+                        <tr>
+                            <% for(var j = 0; j < products.length; j++){ %>
+                                <% if(JSON.stringify(productsQuantity[i]._id) == JSON.stringify(products[j]._id)){ %>  
+                                    <td> <%= products[j].name %> </td>
+                                    <td align='center'><%= productsQuantity[i].quantity %></td>
+                                    <td align='center'><%= products[j].price %></td>                                    
+                                    <td align='center'><%= productsQuantity[i].quantity * products[j].price %></td>
+                                <% } %>
+                            <% } %> 
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+    </body>
+</html>
